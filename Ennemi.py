@@ -33,6 +33,8 @@ class Ennemi:
         self.liste_Percu_E = []
         self.liste_Percu_C = []
 
+        self.Nouvelle_liste2 = []
+
     def mourir(self):
         """ Méthode qui permet de repositionner les ennemis. → Faire comme s'ils mourraient. """
         self.rayon = 5
@@ -116,15 +118,13 @@ class Ennemi:
         if self.position.x < 0 or self.position.x > l:
             self.direction = Vector2(self.direction.x * -1, self.direction.y)
 
-
     def deplacement_versCreep(self, h, l):
         """ [PAS FONCTIONNEL] Méthode qui permet aux ennemis de trouver et de se déplacer vers les creeps présents
         dans leur champ de vision. """
         self.liste_Percu_C.sort(key=lambda x: x.position.distance_to(self.position), reverse=True)
 
         self.Nouvelle_liste2 = sorted(self.liste_Percu_C, key=lambda x: x.position.distance_to(self.position),
-                                     reverse=True)
-
+                                      reverse=True)
 
         if len(self.Nouvelle_liste2) > 0:
             creep = self.Nouvelle_liste2[0]

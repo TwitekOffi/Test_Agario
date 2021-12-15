@@ -166,11 +166,11 @@ def run():
 
     # Déplacements des ennemis (si aucune détection) → déplacements aléatoires
     for deplacementsEnnemis in core.memory("TableauEnnemis"):
-
-        # deplacementsEnnemis.deplacement_aleatoire(720, 1080)
-        deplacementsEnnemis.deplacement_versCreep(720, 1080)
-        # e.deplacement_versCreep(720,1080,c)
-
+        if len(deplacementsEnnemis.liste_Percu_C) != 0:
+            deplacementsEnnemis.deplacement_versCreep(720, 1080)
+            # e.deplacement_versCreep(720,1080,c)
+        else:
+            deplacementsEnnemis.deplacement_aleatoire(720, 1080)
     # Bloc scores
     # ====================================================================================================
     # Dessin du rectangle pour les scores
