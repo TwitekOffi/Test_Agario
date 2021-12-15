@@ -125,7 +125,9 @@ class Ennemi:
         self.Nouvelle_liste2 = sorted(self.liste_Percu_C, key=lambda x: x.position.distance_to(self.position),
                                      reverse=True)
 
-        for creep in self.Nouvelle_liste2:
+
+        if len(self.Nouvelle_liste2) > 0:
+            creep = self.Nouvelle_liste2[0]
             self.Ux = creep.position - self.position
             self.l = self.Ux.length()
             self.Ux = self.Ux.normalize()
@@ -134,14 +136,14 @@ class Ennemi:
             self.Fx = self.raideur * self.L * self.Ux
             self.direction = self.direction + self.Fx
 
-        if self.direction.length() > self.vitessemax and self.direction.length() != 0:
-            self.direction.normalize()
-            self.direction.scale_to_length(self.vitessemax)
+            if self.direction.length() > self.vitessemax and self.direction.length() != 0:
+                self.direction.normalize()
+                self.direction.scale_to_length(self.vitessemax)
 
-        self.position = self.direction + self.position
+            self.position = self.direction + self.position
 
-        if self.position.y < 0 or self.position.y > h:
-            self.direction = Vector2(0, self.direction.y * -1)
+            if self.position.y < 0 or self.position.y > h:
+                self.direction = Vector2(0, self.direction.y * -1)
 
-        if self.position.x < 0 or self.position.x > l:
-            self.direction = Vector2(self.direction.x * -1, self.direction.y)
+            if self.position.x < 0 or self.position.x > l:
+                self.direction = Vector2(self.direction.x * -1, self.direction.y)
